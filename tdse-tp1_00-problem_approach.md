@@ -1,13 +1,4 @@
-# FIUBA - Electrónica - Taller de Sistemas Embebidos
-## Trabajo Práctico N°: 1 - Diagramas de Estado - Modelado
-### Año-Cuatrimestre: 2026 - 2do Cuatrimestre
-### Curso-Grupo: Curso 1 - Grupo XX
-### Responsable de la entrega:
-| Padrón | Apellidos, Nombres | Fecha | Deadline |
-| :----- | :--------------------- | :------: | :-------: |
-| XXXXXX | YYYY, ZZZ | 03/09/2026 | Semana 04 |
 
----
 
 ## 1. Descripción de la Solución de COMA Electronics (Intelligent Parking Management System)
 
