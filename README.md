@@ -4,7 +4,7 @@
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
-| XXXXXX | YYYY, ZZZ | | Semana 04 |
+| 112543 | DELLE COSTE, MATEO | | Semana 04 |
 | XXXXXX | YYYY, ZZZ | | Semana 04 |
 | 94721 | POMATO, ALAN | | Semana 04 |
 
