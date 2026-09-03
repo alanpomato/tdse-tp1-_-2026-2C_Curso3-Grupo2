@@ -13,12 +13,17 @@ state => ST_BTN_RISING
 signal => EV_SYS_ON
 
 # Sensor Statechart - State Transition Table 
-| Curren State | Event | [Guard] | Next State | Actions |
-| :----- | :--------------------- | :------: | :-------: |
-| ST_BTN_UP | YYYY, ZZZ | | Semana 04 | XXXXXX | XXXXXX |
-| ST_BTN_DWON | YYYY, ZZZ | | Semana 04 | XXXXXX | XXXXXX |
-| ST_BTN_FALLING | YYYY, ZZZ | | Semana 04 | XXXXXX | XXXXXX |
 
+| Estado Actual | Evento | [Guard] | Próximo Estado | Acción | 
+| :----- | :--------------------- | :------: | :-------: | :-------: |
+|ST_BTN_DOWN|EV_BTN_OFF||ST_BTN_RISING|reiniciar T|
+|ST_BTN_DOWN|EV_BTN_ON||ST_BTN_DOWN|
+|ST_BTN_UP|EV_BTN_OFF||ST_BTN_UP|
+|ST_BTN_UP|EV_BTN_ON||ST_BTN_FALLING|reiniciar T|
+|ST_BTN_FALLING|EV_BTN_ON|T > Ruido|ST_BTN_DOWN|EV_SYS_ON|
+|ST_BTN_FALLING|EV_BTN_OFF||ST_BTN_UP|
+|ST_BTN_RISING|EV_BTN_ON||ST_BTN_DOWN|
+|ST_BTN_RISING|EV_BTN_OFF|[T > ruido]|ST_BTN_UP|
 
 
 
