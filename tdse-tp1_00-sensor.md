@@ -15,10 +15,9 @@ signal => EV_SYS_ON
 # Sensor Statechart - State Transition Table 
 | Curren State | Event | [Guard] | Next State | Actions |
 | :----- | :--------------------- | :------: | :-------: |
-| XXXXXX | YYYY, ZZZ | | Semana 04 |
-| XXXXXX | YYYY, ZZZ | | Semana 04 |
-| 94721 | POMATO, ALAN | | Semana 04 |
-
+| ST_BTN_UP | YYYY, ZZZ | | Semana 04 | XXXXXX | XXXXXX |
+| ST_BTN_DWON | YYYY, ZZZ | | Semana 04 | XXXXXX | XXXXXX |
+| ST_BTN_FALLING | YYYY, ZZZ | | Semana 04 | XXXXXX | XXXXXX |
 
 
 
