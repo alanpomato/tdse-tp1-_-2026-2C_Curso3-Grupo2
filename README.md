@@ -5,6 +5,6 @@
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
 | 112543 | DELLE COSTE, MATEO | | Semana 04 |
-| XXXXXX | YYYY, ZZZ | | Semana 04 |
+| 110420 | GUERRERO, DEIVY | | Semana 04 |
 | 94721 | POMATO, ALAN | | Semana 04 |
 
