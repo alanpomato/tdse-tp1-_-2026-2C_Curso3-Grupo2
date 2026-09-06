@@ -1,7 +1,21 @@
-Eventos y acciones del modelo Sensor (un solo botón) 
+**Eventos y acciones del modelo Sensor (un solo botón) **
 
-Un sensor (un solo botón) del tipo binario genera 2 eventos (On_pressed u Off_pressed) que reflejan el valor binario al que la maquina reacciona con un cambio de estado y las salidas correspondientes, las cuales definimos como acciones. En este caso la salida representa la acción de inicializar el proceso de parking
 
+Un botón se considera apretado en el estado "Down", y sin apretar en el estado "Up".
+Además, se consideran dos estados adicionales a la transición entre los anteriores: Falling (de Down a Up) y Rising (de Up a Down).
+Los eventos que ejecuta el sensor son "Off" (soltar) y "On" (apretar).
+De esta manera se disponen de 4 estados y 2 eventos. La tabla de transiciones entre ellos se muestra debajo.
+
+En palabras, se puede interpretar el siguiente flujo:
+
+	ST_BTN_UP (sin apretar)
+	Se presiona boton -> Evento EV_BTN_ON
+	El sensor pasa al estado ST_BTN_FALLING.
+	En ST_BTN_FALLING hay dos alternativas, si el evento es EV_BTN_ON y pasa un tiempo definido "Ruido" contabilizado mediante el timer, el botón pasa al estado ST_BTN_DOWN (apretado)
+	En este caso se envía la señal/acción "EV_SYS_ON".
+	Mientras el tiempo sea menor al ruido y siga el evento EV_BTN_ON, se mantiene en ST_BTN_FALLING.
+	Si el evento cambia a EV_BTN_OFF (se suelta), entonces regresa al estado ST_BTN_UP. No hay acción ejecutada en este caso y se considera que un ruido de medición.
+	El caso inverso es idéntico mediante el estado ST_BTN_RISING, con el mismo tiempo definido relacionado al ruido, con la salvedad de que no habrá una señal/acción a ejecutar.
 
 # Sensor Statechart - State Transition Table 
 
