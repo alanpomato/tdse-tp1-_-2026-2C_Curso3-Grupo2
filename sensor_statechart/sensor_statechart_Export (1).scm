@@ -17,245 +17,27 @@
             "text": "sensor_statechart Export"
           },
           "specification": {
-            "text": "@EventDriven\n@SuperSteps(no)\ninterface:\n    // Eventos que representan el estado físico del pulsador (entradas)\n    in event EV_BTN_ON\n    in event EV_BTN_OFF\n    in event timer   \n\n    // Señal de salida que le avisa al sistema que inicie el proceso de parking\n    out event EV_SYS_ON\n\n    // Variable para contar el tiempo de persistencia del estado (debounce)\n    var T : integer = 0\n    \n    // Umbral de ruido (milisegundos o ciclos estables, ej: 20 ticks de 1ms)\n    const RUIDO : integer = 20\n    "
+            "text": "@EventDriven\n@SuperSteps(no)\n\n\n\ninterface Botones:\n    in event EV_BTN_OFF   \n    in event EV_BTN_ON    \n    \ninterface Signal:\n    out event EV_SYS_ON\n    \n    \n"
           }
         },
         "z": 1
       },
       {
         "position": {
-          "x": -221,
-          "y": -18
+          "x": -259,
+          "y": -258
         },
         "size": {
-          "height": 60,
-          "width": 112
-        },
-        "type": "State",
-        "attrs": {
-          "name": {
-            "text": "ST_BTN_UP",
-            "fontSize": 11
-          }
-        },
-        "id": "7fe60486-38ed-4d64-b0a1-e164e4690106",
-        "z": 4
-      },
-      {
-        "position": {
-          "x": 8,
-          "y": -18
-        },
-        "size": {
-          "height": 60,
-          "width": 122
-        },
-        "type": "State",
-        "attrs": {
-          "name": {
-            "text": "ST_BTN_FALLING",
-            "fontSize": 11
-          },
-          "specification": {
-            "text": "    timer / T += 1"
-          }
-        },
-        "id": "15cb909d-1110-4812-acfa-553723fed55f",
-        "z": 5
-      },
-      {
-        "type": "Transition",
-        "attrs": {},
-        "source": {
-          "id": "7fe60486-38ed-4d64-b0a1-e164e4690106"
-        },
-        "target": {
-          "id": "15cb909d-1110-4812-acfa-553723fed55f",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": "15.574%",
-              "dy": "51.667%",
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "EV_BTN_ON / T = 0"
-              }
-            },
-            "position": {}
-          },
-          {
-            "attrs": {
-              "label": {
-                "text": "1"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "dc0747f2-65ef-4338-850a-688274f900e3",
-        "z": 13,
-        "router": {
-          "name": "orthogonal"
-        },
-        "vertices": []
-      },
-      {
-        "type": "Transition",
-        "attrs": {},
-        "source": {
-          "id": "15cb909d-1110-4812-acfa-553723fed55f"
-        },
-        "target": {
-          "id": "7fe60486-38ed-4d64-b0a1-e164e4690106",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": "72.321%",
-              "dy": "48.333%",
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "EV_BTN_OFF"
-              }
-            },
-            "position": {}
-          },
-          {
-            "attrs": {
-              "label": {
-                "text": "2"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "6cb40ecc-3899-47ad-a29a-6a14b2505653",
-        "z": 19,
-        "router": {
-          "name": "orthogonal"
-        },
-        "vertices": [
-          {
-            "x": -48,
-            "y": 118
-          }
-        ]
-      },
-      {
-        "position": {
-          "x": 361,
-          "y": -4
-        },
-        "size": {
-          "height": 60,
-          "width": 109
-        },
-        "type": "State",
-        "attrs": {
-          "name": {
-            "text": "ST_BTN_DOWN\n",
-            "fontSize": 11
-          }
-        },
-        "id": "27976e80-4691-42b1-a8b2-aa10b23ee7d0",
-        "z": 23
-      },
-      {
-        "type": "Transition",
-        "attrs": {},
-        "source": {
-          "id": "15cb909d-1110-4812-acfa-553723fed55f"
-        },
-        "target": {
-          "id": "27976e80-4691-42b1-a8b2-aa10b23ee7d0",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": "3.061%",
-              "dy": "45%",
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "timer [T > RUIDO] / raise EV_SYS_ON"
-              }
-            },
-            "position": {}
-          },
-          {
-            "attrs": {
-              "label": {
-                "text": "1"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "e93c0dbd-2222-4b17-bc86-38f69c8e8b7e",
-        "z": 24,
-        "router": {
-          "name": "orthogonal"
-        },
-        "vertices": []
-      },
-      {
-        "position": {
-          "x": 219,
-          "y": -157
-        },
-        "size": {
-          "height": 55,
-          "width": 55
+          "height": 18,
+          "width": 18
         },
         "type": "Entry",
         "entryKind": "Initial",
         "attrs": {},
-        "id": "62ed6ba1-2498-4b01-8021-10cc3b8fce9d",
-        "z": 29,
+        "id": "9f9f40a3-e1b6-4b7e-aa1a-3f78e9044542",
+        "z": 19,
         "embeds": [
-          "df40f2a2-8e19-4c8b-98dd-26ca9601a96d"
+          "5d8a4f03-946d-48c7-8335-946c50325cb2"
         ]
       },
       {
@@ -266,8 +48,8 @@
           "height": 15
         },
         "position": {
-          "x": 219,
-          "y": -142
+          "x": -259,
+          "y": -243
         },
         "attrs": {
           "label": {
@@ -277,23 +59,50 @@
             "textVerticalAnchor": "middle"
           }
         },
-        "id": "df40f2a2-8e19-4c8b-98dd-26ca9601a96d",
-        "z": 30,
-        "parent": "62ed6ba1-2498-4b01-8021-10cc3b8fce9d"
+        "id": "5d8a4f03-946d-48c7-8335-946c50325cb2",
+        "z": 20,
+        "parent": "9f9f40a3-e1b6-4b7e-aa1a-3f78e9044542"
+      },
+      {
+        "position": {
+          "x": -238,
+          "y": -168
+        },
+        "size": {
+          "height": 74,
+          "width": 151
+        },
+        "type": "State",
+        "attrs": {
+          "body": {
+            "strokeWidth": 0,
+            "stroke": "#FFFFFF",
+            "fill": "#F76868"
+          },
+          "name": {
+            "text": "ST_BTN_UP",
+            "fontSize": 11
+          }
+        },
+        "id": "b4d38df2-61b6-4299-af41-e3c4a355649b",
+        "z": 22,
+        "embeds": [
+          "5d2506a0-d0f7-45df-a1bf-8b5cd01334ae"
+        ]
       },
       {
         "type": "Transition",
         "attrs": {},
         "source": {
-          "id": "62ed6ba1-2498-4b01-8021-10cc3b8fce9d"
+          "id": "9f9f40a3-e1b6-4b7e-aa1a-3f78e9044542"
         },
         "target": {
-          "id": "7fe60486-38ed-4d64-b0a1-e164e4690106",
+          "id": "b4d38df2-61b6-4299-af41-e3c4a355649b",
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": "46.667%",
-              "dy": "41.667%",
+              "dx": "48.344%",
+              "dy": "6.757%",
               "rotate": true
             }
           },
@@ -321,48 +130,26 @@
             "attrs": {}
           }
         ],
-        "id": "96afde5b-1984-4b0f-848b-edd9da70aa0f",
-        "z": 31,
+        "id": "a3752d7a-0542-4706-a2d1-07f71410f615",
+        "z": 23,
         "router": {
           "name": "orthogonal"
         },
         "vertices": []
       },
       {
-        "position": {
-          "x": 600,
-          "y": -6
-        },
-        "size": {
-          "height": 61,
-          "width": 125
-        },
-        "type": "State",
-        "attrs": {
-          "name": {
-            "text": "ST_BTN_RISING",
-            "fontSize": 11
-          },
-          "specification": {
-            "text": "    timer / T += 1"
-          }
-        },
-        "id": "c584ce00-5c61-40d2-b287-7709424f0f2d",
-        "z": 34
-      },
-      {
         "type": "Transition",
         "attrs": {},
         "source": {
-          "id": "27976e80-4691-42b1-a8b2-aa10b23ee7d0"
+          "id": "b4d38df2-61b6-4299-af41-e3c4a355649b"
         },
         "target": {
-          "id": "c584ce00-5c61-40d2-b287-7709424f0f2d",
+          "id": "b4d38df2-61b6-4299-af41-e3c4a355649b",
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": "48.8%",
-              "dy": "72.131%",
+              "dx": "99.338%",
+              "dy": "56.757%",
               "rotate": true
             }
           },
@@ -375,7 +162,144 @@
           {
             "attrs": {
               "text": {
-                "text": "EV_BTN_OFF / T = 0"
+                "text": "Botones.EV_BTN_OFF"
+              }
+            },
+            "position": {
+              "distance": 0.36290694355221403,
+              "offset": -13,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "2"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "5d2506a0-d0f7-45df-a1bf-8b5cd01334ae",
+        "z": 24,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": [
+          {
+            "x": -36,
+            "y": -58
+          }
+        ],
+        "parent": "b4d38df2-61b6-4299-af41-e3c4a355649b"
+      },
+      {
+        "position": {
+          "x": 163,
+          "y": -123
+        },
+        "size": {
+          "height": 87,
+          "width": 195
+        },
+        "type": "State",
+        "attrs": {
+          "body": {
+            "fill": "#BDF7A6"
+          },
+          "name": {
+            "text": "ST_BTN_FALLING",
+            "fontSize": 11
+          }
+        },
+        "id": "c9fb3a94-1367-463e-9292-5d652af472b4",
+        "z": 26
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "b4d38df2-61b6-4299-af41-e3c4a355649b"
+        },
+        "target": {
+          "id": "c9fb3a94-1367-463e-9292-5d652af472b4",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "0.513%",
+              "dy": "52.874%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "Botones.EV_BTN_ON"
+              }
+            },
+            "position": {
+              "distance": 0.658535482257555,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "1"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "b1f18aff-4f31-4f53-839d-8a20ff557078",
+        "z": 27,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": []
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "c9fb3a94-1367-463e-9292-5d652af472b4"
+        },
+        "target": {
+          "id": "b4d38df2-61b6-4299-af41-e3c4a355649b",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "56.954%",
+              "dy": "4.054%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "Botones.EV_BTN_OFF"
               }
             },
             "position": {}
@@ -394,26 +318,59 @@
             "attrs": {}
           }
         ],
-        "id": "96732ea5-edfb-48e2-b2dc-a98cef2f511d",
-        "z": 35,
+        "id": "831bdd37-c998-4d7d-b607-01b0efebd8e8",
+        "z": 27,
         "router": {
           "name": "orthogonal"
         },
-        "vertices": []
+        "vertices": [
+          {
+            "x": 161,
+            "y": -165
+          }
+        ]
+      },
+      {
+        "position": {
+          "x": 179,
+          "y": 37
+        },
+        "size": {
+          "height": 88,
+          "width": 150
+        },
+        "type": "State",
+        "attrs": {
+          "body": {
+            "fill": "#45F76E"
+          },
+          "name": {
+            "text": "ST_BTN_DOWN",
+            "fontSize": 11
+          },
+          "specification": {
+            "text": " "
+          }
+        },
+        "id": "d0c03a42-6728-427f-ba4a-032268a72520",
+        "z": 30,
+        "embeds": [
+          "6dbcbb04-e028-4012-b0db-07fc1c928811"
+        ]
       },
       {
         "type": "Transition",
         "attrs": {},
         "source": {
-          "id": "c584ce00-5c61-40d2-b287-7709424f0f2d"
+          "id": "c9fb3a94-1367-463e-9292-5d652af472b4"
         },
         "target": {
-          "id": "7fe60486-38ed-4d64-b0a1-e164e4690106",
+          "id": "d0c03a42-6728-427f-ba4a-032268a72520",
           "anchor": {
             "name": "topLeft",
             "args": {
-              "dx": "59.821%",
-              "dy": "86.667%",
+              "dx": "51.333%",
+              "dy": "8.333%",
               "rotate": true
             }
           },
@@ -426,7 +383,264 @@
           {
             "attrs": {
               "text": {
-                "text": "timer [T > RUIDO]"
+                "text": "Botones.EV_BTN_ON, after 5000 ms / raise Signal.EV_SYS_ON"
+              }
+            },
+            "position": {
+              "distance": 0.4504950503780417,
+              "offset": -193,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "2"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "e46510ff-bcbb-4414-bcfa-2d84cc85058b",
+        "z": 31,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": []
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "d0c03a42-6728-427f-ba4a-032268a72520"
+        },
+        "target": {
+          "id": "d0c03a42-6728-427f-ba4a-032268a72520",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "99.333%",
+              "dy": "50%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "Botones.EV_BTN_ON"
+              }
+            },
+            "position": {
+              "distance": 0.39990933252673816,
+              "offset": -14,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "1"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "6dbcbb04-e028-4012-b0db-07fc1c928811",
+        "z": 32,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": [
+          {
+            "x": 431,
+            "y": 146
+          }
+        ],
+        "parent": "d0c03a42-6728-427f-ba4a-032268a72520"
+      },
+      {
+        "position": {
+          "x": -186,
+          "y": 62
+        },
+        "size": {
+          "height": 67,
+          "width": 201
+        },
+        "type": "State",
+        "attrs": {
+          "body": {
+            "fill": "#FDAFAF"
+          },
+          "name": {
+            "text": "ST_BTN_RISING",
+            "fontSize": 11
+          }
+        },
+        "id": "1e1babfe-76f7-4279-8c28-bf591d428f0f",
+        "z": 33
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "d0c03a42-6728-427f-ba4a-032268a72520"
+        },
+        "target": {
+          "id": "1e1babfe-76f7-4279-8c28-bf591d428f0f",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "99.005%",
+              "dy": "46.269%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "Botones.EV_BTN_OFF"
+              }
+            },
+            "position": {
+              "distance": 0.524390243902439,
+              "offset": 13,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "2"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "0f148461-6085-4f90-89ec-45a3df50b1b7",
+        "z": 34,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": []
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "1e1babfe-76f7-4279-8c28-bf591d428f0f"
+        },
+        "target": {
+          "id": "b4d38df2-61b6-4299-af41-e3c4a355649b",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "15.894%",
+              "dy": "91.892%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "Botones.EV_BTN_OFF, after 5000 ms"
+              }
+            },
+            "position": {
+              "distance": 0.6781882097887396,
+              "offset": -20.475296020507812,
+              "angle": 0
+            }
+          },
+          {
+            "attrs": {
+              "label": {
+                "text": "1"
+              }
+            }
+          },
+          {
+            "attrs": {}
+          },
+          {
+            "attrs": {}
+          }
+        ],
+        "id": "5e083f51-5766-4efb-b828-4397e3289b3a",
+        "z": 35,
+        "router": {
+          "name": "orthogonal"
+        },
+        "vertices": [
+          {
+            "x": -102,
+            "y": 21
+          },
+          {
+            "x": -214,
+            "y": -13
+          }
+        ]
+      },
+      {
+        "type": "Transition",
+        "attrs": {},
+        "source": {
+          "id": "1e1babfe-76f7-4279-8c28-bf591d428f0f"
+        },
+        "target": {
+          "id": "d0c03a42-6728-427f-ba4a-032268a72520",
+          "anchor": {
+            "name": "topLeft",
+            "args": {
+              "dx": "9.333%",
+              "dy": "100%",
+              "rotate": true
+            }
+          },
+          "priority": true
+        },
+        "connector": {
+          "name": "rounded"
+        },
+        "labels": [
+          {
+            "attrs": {
+              "text": {
+                "text": "Botones.EV_BTN_ON"
               }
             },
             "position": {}
@@ -445,77 +659,12 @@
             "attrs": {}
           }
         ],
-        "id": "18316eeb-f0bd-44f3-b194-9111a5084c39",
-        "z": 35,
+        "id": "4f92b815-a2af-4894-8a7b-ea95c819e153",
+        "z": 36,
         "router": {
           "name": "orthogonal"
         },
-        "vertices": [
-          {
-            "x": 695,
-            "y": 217
-          },
-          {
-            "x": -83,
-            "y": 217
-          }
-        ]
-      },
-      {
-        "type": "Transition",
-        "attrs": {},
-        "source": {
-          "id": "c584ce00-5c61-40d2-b287-7709424f0f2d"
-        },
-        "target": {
-          "id": "27976e80-4691-42b1-a8b2-aa10b23ee7d0",
-          "anchor": {
-            "name": "topLeft",
-            "args": {
-              "dx": "55.102%",
-              "dy": "78.333%",
-              "rotate": true
-            }
-          },
-          "priority": true
-        },
-        "connector": {
-          "name": "rounded"
-        },
-        "labels": [
-          {
-            "attrs": {
-              "text": {
-                "text": "EV_BTN_ON"
-              }
-            },
-            "position": {}
-          },
-          {
-            "attrs": {
-              "label": {
-                "text": "1"
-              }
-            }
-          },
-          {
-            "attrs": {}
-          },
-          {
-            "attrs": {}
-          }
-        ],
-        "id": "820735fe-59cf-45ea-9714-4a2e8c2bc7b7",
-        "z": 35,
-        "router": {
-          "name": "orthogonal"
-        },
-        "vertices": [
-          {
-            "x": 543,
-            "y": 145
-          }
-        ]
+        "vertices": []
       }
     ]
   },
