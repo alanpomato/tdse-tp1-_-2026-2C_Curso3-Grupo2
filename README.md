@@ -4,7 +4,7 @@
 ### Responsable de la entrega:
 | Padrón | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
-| 112543 | DELLE COSTE, MATEO | | Semana 04 |
-| 110420 | GUERRERO, DEIVY | | Semana 04 |
-| 94721 | POMATO, ALAN | | Semana 04 |
+| 112543 | DELLE COSTE, MATEO | 10/09/2026 | Semana 04 |
+| 110420 | GUERRERO, DEIVY | 10/09/2026 | Semana 04 |
+| 94721 | POMATO, ALAN | 10/09/2026 | Semana 04 |
 
